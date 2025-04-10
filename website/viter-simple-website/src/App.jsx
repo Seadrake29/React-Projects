@@ -20,7 +20,7 @@ function App() {
   ];
 
   return (
-    <>
+    <>  
       <div className="flex flex-col min-h-screen">
         <header>
           <div className="bg-blue-500 text-white font-bold text-2xl p-4">

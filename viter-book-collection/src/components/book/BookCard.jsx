@@ -7,7 +7,7 @@ function BookCard({ id, title, author, onRemove }) {
       </div>
       <button
         onClick={() => onRemove(id)}
-        className="mt-4 bg-red-200 text-red-500 text-sm font-medium w-full py-2 rounded text-center"
+        className="mt-4 bg-red-200 text-red-500 hover:bg-red-300 text-sm font-medium w-full py-2 rounded text-center"
       >
         Remove
       </button>

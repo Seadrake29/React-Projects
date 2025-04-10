@@ -63,7 +63,7 @@ function Book({ onAdd }) {
 
           <button
             type="submit"
-            className="bg-blue-500 text-white px-6 py-2 rounded w-full sm:w-fit"
+            className="bg-blue-500 hover:bg-blue-700 text-white px-6 py-2 rounded w-full sm:w-fit"
           >
             Add to Collection
           </button>

@@ -7,6 +7,7 @@ export default {
         primary: "#3e9bd0",
         textyellow: "#fc9827",
         hover: "#2877a4",
+        lightyellow: "#f7c68f",
       },
 
       fontFamily: {

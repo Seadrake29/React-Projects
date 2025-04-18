@@ -62,7 +62,7 @@ const ContactForm = () => {
               </label>
             </div>
 
-            {/* Submit button (smaller) */}
+          
             <button
               type="submit"
               className="bg-lightyellow text-white text-xs font-medium py-1.5 px-3 rounded-md hover:opacity-90 transition self-start"

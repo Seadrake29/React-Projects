@@ -5,6 +5,8 @@ import About from "./components/about/About";
 import Faq from "./components/faq/faq";
 import Strategy from "./components/strategy/Strategy";
 import Contact from "./components/contact/Contact";
+import Sponsor from "./components/sponsor/Sponsor";
+import Donate from "./components/donate/Donate";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Faq />
       <Strategy />
       <Contact />
+      <Sponsor />
+      <Donate />
     </>
   );
 }

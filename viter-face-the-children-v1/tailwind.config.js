@@ -9,7 +9,18 @@ export default {
         hover: "#2877a4",
         lightyellow: "#f7c68f",
       },
-
+      keyframes: {
+        "fade-in-up": {
+          "0%": {
+            opacity: 0,
+            transform: "translate3d(0, 100%, 0)", // Initially from bottom
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translate3d(0, 0, 0)", // Fully visible
+          },
+        },
+      },
       fontFamily: {
         poppins: "Poppins",
       },

@@ -12,7 +12,7 @@ const App = () => {
 
       <main className="flex-grow ">
         {/* Hero Section */}
-        <section className="bg-blue-100 py-20 text-center mt-10">
+        <section className="bg-blue-100 py-20 text-center mt-19">
           <h2 className="text-3xl font-bold mb-4">{heroContent.title}</h2>
           <p className="text-gray-700 mb-6">{heroContent.description}</p>
           <Button>{heroContent.buttonText}</Button>

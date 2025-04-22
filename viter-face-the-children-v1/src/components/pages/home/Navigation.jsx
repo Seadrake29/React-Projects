@@ -1,202 +1,109 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom"; // Use NavLink for active states
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "FAQ", path: "/faq" },
+    { name: "Strategy", path: "/strategy" },
+    { name: "Contact", path: "/contact" },
+    { name: "Sponsor child", path: "/sponsor" },
+  ];
 
   return (
-    <nav className="bg-white border-b border-gray-200 shadow-sm fixed top-0 left-0 right-0 z-50 mt-5">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <nav className="bg-navcolor border-b border-gray-200 shadow-sm fixed top-0 left-0 right-0 z-50 mt-8">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-10">
         {/* Logo */}
-        <img src="./src/assets/ftc_svg_logo.svg" alt="Logo" className="h-8" />
+        <img
+          src="./src/assets/ftc_svg_logo.svg"
+          alt="Logo"
+          className="w-174 h-30"
+        />
 
         {/* Desktop Nav */}
         <ul className="hidden md:flex space-x-6 text-sm text-gray-800 items-center">
+          {navLinks.map((item) => (
+            <li key={item.path}>
+              <Link
+                to={item.path}
+                className={`${
+                  currentPath === item.path
+                    ? "text-orange-500 "
+                    : "hover:text-orange-500"
+                }`}
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
+
           <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "text-black"
-              }
-              end
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "hover:text-orange-500"
-              }
-            >
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/faq"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "hover:text-orange-500"
-              }
-            >
-              FAQ
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/strategy"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "hover:text-orange-500"
-              }
-            >
-              Strategy
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "hover:text-orange-500"
-              }
-            >
-              Contact
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/sponsor"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "hover:text-orange-500"
-              }
-            >
-              Sponsor child
-            </NavLink>
-          </li>
-          {/* Active state handling for Donate button */}
-          <li>
-            <NavLink
-              to="/donate"
-              className={({ isActive }) =>
-                isActive ? "text-textyellow" : "hover:text-orange-500"
-              }
-            >
-              <button className="bg-primary text-white text-sm px-4 py-1 rounded hover:bg-hover">
+            <Link to="/donate">
+              <button
+                className={`${
+                  currentPath === "/donate"
+                    ? "bg-textyellow  border "
+                    : "bg-primary"
+                } text-white text-xs px-3 py-2 rounded-md hover:bg-hover transition`}
+              >
                 Donate
               </button>
-            </NavLink>
+            </Link>
           </li>
         </ul>
 
-        {/* Mobile Menu Button with Smooth Transition */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden focus:outline-none text-primary"
         >
           <span className="transition-all duration-300 ease-in-out transform">
-            {isOpen ? (
-              <X
-                size={24}
-                className="transition-all duration-300 ease-in-out scale-100 opacity-100"
-              />
-            ) : (
-              <Menu
-                size={24}
-                className="transition-all duration-300 ease-in-out scale-100 opacity-100"
-              />
-            )}
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </span>
         </button>
       </div>
 
-      {/* Slide-in Mobile Menu */}
+      {/* Mobile Slide Menu */}
       <div
         className={`fixed top-30 left-0 right-0 h-[calc(100vh-4rem)] w-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } md:hidden`}
       >
-        <ul className="flex flex-col items-center justify-center space-y-4 mt-8 text-sm text-gray-800">
+        <ul className="flex flex-col items-center justify-center space-y-4 mt-8 text-sm text-gray-800 uppercase">
+          {navLinks.map((item) => (
+            <li key={item.path}>
+              <Link
+                to={item.path}
+                onClick={() => setIsOpen(false)}
+                className={`${
+                  currentPath === item.path
+                    ? "text-orange-500 "
+                    : "hover:text-orange-500"
+                }`}
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
+
           <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500 font-semibold" : "text-gray-800"
-              }
-              end
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "text-gray-800"
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/faq"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "text-gray-800"
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              FAQ
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/strategy"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "text-gray-800"
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              Strategy
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "text-gray-800"
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/sponsor"
-              className={({ isActive }) =>
-                isActive ? "text-orange-500" : "text-gray-800"
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              Sponsor child
-            </NavLink>
-          </li>
-          {/* Active state handling for Donate button */}
-          <li>
-            <NavLink
-              to="/donate"
-              className={({ isActive }) =>
-                isActive ? "text-textyellow" : "text-gray-800"
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              <button className="bg-blue-500 text-white text-sm px-4 py-1 w-32 rounded hover:bg-blue-600">
+            <Link to="/donate" onClick={() => setIsOpen(false)}>
+              <button
+                className={`${
+                  currentPath === "/donate"
+                    ? "bg-textyellow border border-textyellow"
+                    : "bg-blue-500"
+                } text-white text-sm px-4 py-1 w-32 rounded hover:bg-blue-600 transition`}
+              >
                 Donate
               </button>
-            </NavLink>
+            </Link>
           </li>
         </ul>
       </div>

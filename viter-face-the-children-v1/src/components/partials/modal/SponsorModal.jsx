@@ -22,7 +22,6 @@ const SponsorModal = ({ isOpen, closeModal, selectedChild }) => {
 
   if (!showModal || !selectedChild) return null;
 
-  // FloatingInput component defined inside SponsorModal
   const FloatingInput = ({
     label,
     type = "text",
@@ -60,7 +59,7 @@ const SponsorModal = ({ isOpen, closeModal, selectedChild }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div
         className={`bg-white rounded shadow-lg w-full max-w-sm p-6 transform transition-all duration-300 ${
-          isOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+          isOpen ? "translate-y-0 opacity-100" : "translate-y-full "
         }`}
       >
         <div className="relative overflow-hidden -m-[24px] mb-6">
@@ -80,43 +79,69 @@ const SponsorModal = ({ isOpen, closeModal, selectedChild }) => {
           <h3 className="text-gray-700 font-semibold mb-3">Choose Amount</h3>
           <div className="grid grid-cols-2 gap-4">
             {presetAmounts.map((amount) => (
-              <div key={amount} className="flex items-center">
-                <input
-                  type="radio"
-                  id={`amount-${amount}`}
-                  name="amount"
-                  value={amount}
-                  checked={selectedAmount === amount}
-                  onChange={() => handleAmountChange(amount)}
-                  className="form-radio h-5 w-5 text-orange-500 border-2 border-orange-500 focus:ring-orange-500 focus:outline-none"
-                />
-                <label
-                  htmlFor={`amount-${amount}`}
-                  className="ml-2 text-sm text-gray-700"
-                >
-                  ${amount}.00
-                </label>
-              </div>
+              <label
+                key={amount}
+                htmlFor={`amount-${amount}`}
+                className="flex items-center gap-2 cursor-pointer group"
+              >
+                <span className="relative flex items-center justify-center">
+                  <input
+                    type="radio"
+                    id={`amount-${amount}`}
+                    name="amount"
+                    value={amount}
+                    checked={selectedAmount === amount}
+                    onChange={() => handleAmountChange(amount)}
+                    className="peer hidden"
+                  />
+                  <span className="h-5 w-5 rounded-full border-2 flex items-center justify-center transition-all duration-200 peer-checked:bg-textyellow group-hover:bg-textyellow">
+                    <svg
+                      className="w-3 h-3 text-white transition-opacity duration-200  peer-checked:opacity-100"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                </span>
+                <span className="text-sm text-gray-700">${amount}.00</span>
+              </label>
             ))}
           </div>
+
           <div className="mt-4">
-            <div className="flex items-center">
-              <input
-                type="radio"
-                id="fully-sponsor"
-                name="amount"
-                value={380}
-                checked={selectedAmount === 380}
-                onChange={() => handleAmountChange(380)}
-                className="form-radio h-5 w-5 text-orange-500 border-2 border-orange-500 focus:ring-orange-500 focus:outline-none"
-              />
-              <label
-                htmlFor="fully-sponsor"
-                className="ml-2 text-sm text-gray-700"
-              >
+            <label
+              htmlFor="fully-sponsor"
+              className="flex items-center gap-2 cursor-pointer group"
+            >
+              <span className="relative flex items-center justify-center">
+                <input
+                  type="radio"
+                  id="fully-sponsor"
+                  name="amount"
+                  value={380}
+                  checked={selectedAmount === 380}
+                  onChange={() => handleAmountChange(380)}
+                  className="peer hidden"
+                />
+                <span className="h-5 w-5 rounded-full border-2 flex items-center justify-center transition-all duration-200 peer-checked:bg-textyellow group-hover:bg-textyellow">
+                  <svg
+                    className="w-3 h-3 text-white transition-opacity duration-200  peer-checked:opacity-100"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+              </span>
+              <span className="text-sm text-gray-700">
                 $380.00 to Fully Sponsor
-              </label>
-            </div>
+              </span>
+            </label>
           </div>
         </div>
 
@@ -149,7 +174,7 @@ const SponsorModal = ({ isOpen, closeModal, selectedChild }) => {
           </p>
           <div className="flex justify-end gap-2 mt-2">
             <img
-              src="/public/paymentmethods.png"
+              src="/paymentmethods.png"
               alt="Credit Cards"
               className="w-30"
             />

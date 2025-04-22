@@ -2,6 +2,7 @@ import { useState } from "react";
 import { residentData, nonResidentData } from "./SponsorData";
 import { FaHouse, FaPeopleGroup, FaArrowRight } from "react-icons/fa6";
 import SponsorModal from "../../partials/modal/SponsorModal";
+import { MdOutlineFamilyRestroom } from "react-icons/md";
 
 export default function SponsorSection() {
   const [activeTab, setActiveTab] = useState("resident");
@@ -78,7 +79,7 @@ export default function SponsorSection() {
                 : "text-gray-400"
             }`}
           >
-            <FaPeopleGroup /> Non-Resident
+            <MdOutlineFamilyRestroom /> Non-Resident
           </button>
         </div>
 

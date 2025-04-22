@@ -3,27 +3,30 @@ import React from "react";
 const Prevail = () => {
   return (
     <section className="bg-[#f4f5f7] py-16 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-center md:justify-center">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-center md:justify-center gap-[50px]">
         {/* Image */}
-        <div className="w-full md:w-auto flex justify-center md:justify-end md:mr-24">
-          <div className="w-64 h-64 md:w-80 md:h-80 overflow-hidden rounded-[50%_0_50%_50%]">
+        <div className="w-full md:w-auto flex justify-center md:justify-between md:mr-24">
+          <div>
             <img
-              src="https://facethechildren.org/images/website/s-love.webp"
+              src="./img/Strategy/s-love.webp"
               alt="Love Never Fails"
-              className="object-cover w-full h-full grayscale"
+              className="object-cover w-full h-full"
             />
           </div>
         </div>
 
         {/* Text */}
-        <div className="w-full md:max-w-xl text-left lg:text-left md:text-left mt-8 md:mt-0">
-          <p className="uppercase text-sm text-textyellow mb-3">
+        <div className="w-full md:max-w-[38%] text-left md:text-left mt-8">
+          <p className="uppercase lg:text-sm text-xs text-textyellow mb-3">
             Prevails Forever
           </p>
-          <h2 className="lg:text-3xl text-xl font-semi-bold text-primary mb-4">
+          <h2 className="lg:text-3xl text-lg font-semibold text-primary mb-4">
             Love Never Fails
           </h2>
-          <p className="text-gray-600  mb-5" style={{ lineHeight: "1.8" }}>
+          <p
+            className="text-[#3a3b36] text-sm mb-5"
+            style={{ lineHeight: "2" }}
+          >
             Many children we serve come to us with psychological, behavioral
             problems, and even chemical or mental addictions; some at very young
             ages. Many are not ready to trust or commit to others due to various
@@ -34,7 +37,7 @@ const Prevail = () => {
             children regardless of the outcomes of our interventions with all
             children.
           </p>
-          <p className="text-gray-600" style={{ lineHeight: "1.8" }}>
+          <p className="text-[#3a3b36] text-sm " style={{ lineHeight: "2" }}>
             Many children we serve come to us with psychological, behavioral
             problems, and even chemical or mental addictions; some at very young
             ages. Many are not ready to trust or commit to others due to various

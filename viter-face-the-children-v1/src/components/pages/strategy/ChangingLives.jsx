@@ -2,11 +2,9 @@ import React from "react";
 
 const ChangingLives = () => {
   return (
-    <section className="bg-white py-16 px-6">
+    <section className="bg-white pt-40 pb-20 px-6">
       <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-start gap-10">
-        {/* Left Column: Text Content */}
         <div className="w-full md:w-1/2 space-y-8 text-gray-700">
-          {/* Problem */}
           <div className="my-10">
             <p className="text-sm text-textyellow uppercase mb-1">
               The Problem
@@ -73,10 +71,9 @@ const ChangingLives = () => {
           </div>
         </div>
 
-        {/* Right Column: Image */}
         <div className="w-full md:w-1/2">
           <img
-            src="https://facethechildren.org/images/website/s-banner.webp"
+            src="./img/Strategy/s-banner.webp"
             alt="Face the Children program"
             className="w-full h-auto object-cover"
           />

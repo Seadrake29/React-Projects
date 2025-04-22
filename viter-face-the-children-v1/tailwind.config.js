@@ -8,6 +8,8 @@ export default {
         textyellow: "#fc9827",
         hover: "#2877a4",
         lightyellow: "#f7c68f",
+        navcolor: "#fafafa",
+        textblack: "#3A3B36",
       },
       keyframes: {
         "fade-in-up": {

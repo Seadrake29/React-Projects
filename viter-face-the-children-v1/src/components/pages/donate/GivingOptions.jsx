@@ -1,51 +1,56 @@
-// src/components/donate/GivingOptions.jsx
 import React, { useState } from "react";
-import givingOptions from "./DonateData"; // Assuming you have this data
+import givingOptions from "./DonateData";
 import { MdArrowForward } from "react-icons/md";
-import DonateModal from "../../partials/modal/DonateModal"; // Correct path
+import DonateModal from "../../partials/modal/DonateModal";
 
 const GivingOptions = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTitle, setSelectedTitle] = useState("");
 
-  // Function to open the modal
-  const openModal = () => setIsModalOpen(true);
+  const openModal = (title) => {
+    setSelectedTitle(title);
+    setIsModalOpen(true);
+  };
 
-  // Function to close the modal
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
-    <section className="py-16 mt-20 bg-gray-50">
+    <section className="py-16 mt-[168px] mb-20">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="flex flex-wrap justify-center gap-5">
           {givingOptions.map((option, index) => (
             <div
               key={index}
-              className="bg-white shadow rounded overflow-hidden flex flex-col w-80 min-h-[520px]"
+              className="bg-white shadow overflow-hidden flex flex-col w-[268px] min-h-[480px]" // changed w-80 to w-72, height also adjusted
             >
               <img
                 src={option.image}
                 alt={option.title}
-                className="w-full h-100 object-cover"
+                className="w-full h-90 object-cover" // reduced height for proportion
               />
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-lg font-semibold">{option.title}</h3>
-                <p className="text-gray-600 text-sm flex-1 mt-2">
+              <div className="p-5 flex flex-col flex-1">
+                {" "}
+                {/* slightly less padding */}
+                <h3 className="text-base mb-3 text-[#3a3b36] font-semibold">
+                  {option.title}
+                </h3>
+                <p className="text-gray-600 text-xs flex-1 mt-2">
                   {option.description}
                 </p>
-
                 <div className="flex flex-col gap-2 mt-4">
-                  <button className="text-textyellow flex items-center gap-2">
+                  <button className="text-textyellow flex items-center gap-2 text-[16px]">
                     <span className="w-4 h-4 flex items-center justify-center rounded-full border-2 border-textyellow text-textyellow">
                       <MdArrowForward className="text-xs font-bold" />
                     </span>
                     Read More
                   </button>
                 </div>
-
-                <div className="mt-auto pt-6">
+                <div className="mt-auto pt-4">
                   <button
-                    onClick={openModal}
-                    className="bg-primary text-white text-sm px-4 py-1.5 rounded hover:bg-opacity-90 transition"
+                    onClick={() => openModal(option.title)}
+                    className="bg-primary text-white text-xs px-8 py-2 rounded-md hover:bg-opacity-90 transition"
                   >
                     Donate Now
                   </button>
@@ -56,8 +61,11 @@ const GivingOptions = () => {
         </div>
       </div>
 
-      {/* Modal Component */}
-      <DonateModal isOpen={isModalOpen} closeModal={closeModal} />
+      <DonateModal
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        title={selectedTitle}
+      />
     </section>
   );
 };

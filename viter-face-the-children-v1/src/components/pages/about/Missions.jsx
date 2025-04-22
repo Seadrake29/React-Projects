@@ -7,7 +7,7 @@ const Missions = () => {
         {/* Left Image */}
         <div className="w-full lg:w-1/2 flex justify-center sm:justify-start">
           <img
-            src="https://facethechildren.org/images/website/about-banner.webp"
+            src="./img/About/about-banner.webp"
             alt="About Banner"
             className="w-full max-w-md mx-auto"
           />

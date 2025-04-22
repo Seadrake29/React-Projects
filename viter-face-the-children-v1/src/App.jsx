@@ -1,5 +1,3 @@
-import { useState } from "react";
-import Header from "./components/pages/home/Header";
 import Home from "./components/pages/home/Home";
 import About from "./components/pages/about/About";
 import Faq from "./components/pages/faq/faq";

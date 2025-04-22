@@ -2,18 +2,19 @@ import React from "react";
 
 const CreatingOpportunity = () => {
   return (
-    <section className="bg-white py-16 mt-20">
-      <div className="max-w-7xl mx-auto px-4 flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
-        <div className="w-full lg:max-w-xl text-left lg:text-left">
-          <p className="text-xs text-orange-500 uppercase mb-2">
+    <section className="bg-white py-16 mt-[150px]">
+      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-16 lg:gap-[150px]">
+        {/* Text Section */}
+        <div className="w-full md:w-1/2">
+          <p className="text-xs text-textyellow uppercase mb-2">
             Creating Opportunity
           </p>
           <h1
-            className="lg:text-5xl text-2xl sm:text-xl font-semibold text-gray-700 mb-6"
-            style={{ lineHeight: "1.2" }}
+            className="text-2xl sm:text-xl lg:text-[42.5px] font-semibold text-textblack mb-6 md:text-4xl"
+            style={{ lineHeight: "1.3" }}
           >
-            Making a difference for abandoned, abused, or dangerously
-            <br className="hidden sm:inline" />
+            Making a difference for <br /> abandoned, abused, or dangerously
+            <br />
             neglected children
           </h1>
 
@@ -22,11 +23,12 @@ const CreatingOpportunity = () => {
           </button>
         </div>
 
-        <div className="w-full flex justify-center lg:justify-end">
+        {/* Image Section */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
           <img
-            src="https://facethechildren.org/images/website/h-banner.webp"
+            src="./img/Home/h-banner.webp"
             alt="Children Graphic"
-            className="w-full max-w-md lg:max-w-lg"
+            className="max-w-full md:max-w-[500px] lg:max-w-[573px] h-auto object-contain"
           />
         </div>
       </div>

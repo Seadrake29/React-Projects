@@ -52,7 +52,7 @@ const Questions = () => {
                 </span>
               </button>
 
-              {/* Answer Box */}
+           
               {activeId === item.id && (
                 <div className="lg:absolute lg:left-full text-sm lg:ml-[150px] lg:top-0 w-full lg:w-[400px] mt-4 lg:mt-0 border border-blue-300 bg-gray-100 rounded-lg p-4 text-gray-700 shadow-md z-10">
                   <p>{item.answer}</p>

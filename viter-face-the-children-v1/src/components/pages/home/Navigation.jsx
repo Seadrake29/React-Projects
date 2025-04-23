@@ -17,17 +17,15 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-navcolor border-b border-gray-200 shadow-sm fixed top-0 left-0 right-0 z-50 mt-8">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-10">
-        {/* Logo */}
+    <nav className="bg-navcolor border-b border-gray-200 shadow-sm fixed top-0 left-0 right-0 z-50 mt-7">
+      <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between gap-10">
         <img
           src="./src/assets/ftc_svg_logo.svg"
           alt="Logo"
           className="w-174 h-30"
         />
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex space-x-6 text-sm text-gray-800 items-center">
+        <ul className="hidden md:flex space-x-6 text-[15px] text-gray-800 items-center">
           {navLinks.map((item) => (
             <li key={item.path}>
               <Link
@@ -58,7 +56,6 @@ const Navigation = () => {
           </li>
         </ul>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden focus:outline-none text-primary"
@@ -69,7 +66,6 @@ const Navigation = () => {
         </button>
       </div>
 
-      {/* Mobile Slide Menu */}
       <div
         className={`fixed top-30 left-0 right-0 h-[calc(100vh-4rem)] w-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40 ${
           isOpen ? "translate-x-0" : "translate-x-full"

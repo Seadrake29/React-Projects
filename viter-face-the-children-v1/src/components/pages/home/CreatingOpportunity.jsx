@@ -3,8 +3,7 @@ import React from "react";
 const CreatingOpportunity = () => {
   return (
     <section className="bg-white py-16 mt-[150px]">
-      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-16 lg:gap-[150px]">
-        {/* Text Section */}
+      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-[200px] lg:gap-[150px]">
         <div className="w-full md:w-1/2">
           <p className="text-xs text-textyellow uppercase mb-2">
             Creating Opportunity
@@ -18,17 +17,16 @@ const CreatingOpportunity = () => {
             neglected children
           </h1>
 
-          <button className="bg-primary text-white px-6 py-2 rounded hover:bg-hover text-sm">
+          <button className="bg-primary text-white px-4 py-2 rounded hover:bg-hover text-xs">
             Sponsor Now
           </button>
         </div>
 
-        {/* Image Section */}
         <div className="w-full md:w-1/2 flex justify-center md:justify-end">
           <img
             src="./img/Home/h-banner.webp"
             alt="Children Graphic"
-            className="max-w-full md:max-w-[500px] lg:max-w-[573px] h-auto object-contain"
+            className="max-w-full md:max-w-[600px] lg:max-w-[573px] h-auto object-contain"
           />
         </div>
       </div>

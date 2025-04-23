@@ -2,32 +2,29 @@ import React from "react";
 
 const Transform = () => {
   return (
-    <section className="py-16 lg:mt-[150px] mt-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 flex flex-col mt-15 lg:flex-row items-center gap-[150px]">
-        {/* Left Image */}
-        <div className="w-full lg:w-1/2 flex justify-center">
+    <section className="py-2 bg-white">
+      <div className="max-w-7xl mx-auto px-4 flex flex-col mt-[100px] md:mt-[130px] lg:mt-[150px] md:flex-row items-center gap-10 md:gap-[80px] lg:gap-[150px] justify-between pb-24">
+        <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src="./img/About/about-banner.webp"
+            src="https://facethechildren.org/images/website/about-banner.webp"
             alt="About Banner"
-            className="lg:w-[500px] lg:max-w-[600px] w-[300px]"
+            className="w-[90%] max-w-[500px] md:max-w-[550px] lg:max-w-[600px]"
           />
         </div>
 
-        {/* Text Content */}
-        <div className="w-full lg:w-1/2 text-left sm:text-left">
-          <p className="text-xs text-textyellow uppercase mb-2">
+        <div className="w-full md:w-1/2 text-left">
+          <p className="text-xs text-textyellow uppercase mb-1">
             from street to smiles
           </p>
           <h2
-            className="lg:text-5xl text-2xl lg:w-[800px] font-semibold sm:text-4xl text-[#3a3b36] mb-10"
+            className="text-2xl sm:text-3xl md:text-[36px] lg:text-[46px] font-semibold text-[#3a3b36] mb-8 md:mb-10"
             style={{ lineHeight: "1.4" }}
           >
             Transform lives from <br />
             the harsh reality of the <br /> streets to the warmth and comfort of
             genuine smiles
           </h2>
-
-          <button className="bg-primary text-white px-3 py-2 rounded hover:bg-hover text-xs">
+          <button className="bg-primary text-white px-4 py-2 rounded-md hover:bg-hover text-xs">
             Sponsor Now
           </button>
         </div>

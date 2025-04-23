@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const FloatingInput = ({
   label,
@@ -8,12 +9,16 @@ const FloatingInput = ({
   isTextArea = false,
   isSelect = false,
   options = [],
+  value,
+  onChange,
 }) => (
   <div className="relative w-full">
     {isTextArea ? (
       <textarea
         id={name}
         name={name}
+        value={value}
+        onChange={onChange}
         className="w-full border border-primary-300 rounded-md px-3 pt-4 pb-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
         placeholder=" "
         rows="5"
@@ -22,9 +27,11 @@ const FloatingInput = ({
       <select
         id={name}
         name={name}
-        className="w-full border border-primary-300 rounded-md px-3 pt-4 pb-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+        value={value}
+        onChange={onChange}
+        className="w-full border border-primary-300 rounded-md px-3 pt-4 pb-2 text-sm bg-white text-black focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
       >
-        <option value="" disabled selected hidden></option>
+        <option value="" disabled hidden></option>
         {options.map((opt, idx) => (
           <option key={idx} value={opt}>
             {opt}
@@ -36,6 +43,8 @@ const FloatingInput = ({
         type={type}
         id={name}
         name={name}
+        value={value}
+        onChange={onChange}
         className="w-full border border-primary-300 rounded-md px-3 pt-4 pb-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
         placeholder=" "
       />
@@ -50,35 +59,59 @@ const FloatingInput = ({
 );
 
 const DonateModal = ({ isOpen, closeModal, title }) => {
-  const [showModal, setShowModal] = useState(isOpen);
+  const [showModal, setShowModal] = useState(false);
+  const [animateIn, setAnimateIn] = useState(false);
+  const [formData, setFormData] = useState({
+    designation: "",
+    amount: "",
+    frequency: "",
+    remarks: "",
+    email: "",
+  });
 
   useEffect(() => {
     if (isOpen) {
+      // Reset form when modal opens
+      setFormData({
+        designation: "",
+        amount: "",
+        frequency: "",
+        remarks: "",
+        email: "",
+      });
+
       setShowModal(true);
+      setTimeout(() => setAnimateIn(true), 50);
     } else {
+      setAnimateIn(false);
       const timer = setTimeout(() => setShowModal(false), 300);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   if (!showModal) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div
-        className={`bg-white rounded-xs shadow-lg w-96 p-6 transform transition-all duration-300 ${
-          isOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+        className={`bg-white rounded-md shadow-lg w-full max-w-md p-6 m-4 transform transition-all duration-300 ease-in-out ${
+          animateIn ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         }`}
       >
         <div className="relative -m-[24px] overflow-hidden mb-4">
-          <div className="bg-primary overflow px-4 py-5 rounded-t-xs w-full">
-            <h2 className="text-xl font-semibold text-white">
+          <div className="bg-primary overflow px-4 py-[16px] w-full">
+            <h2 className="text-xl md:text-sm font-semibold text-white">
               {title || "Donation"}
             </h2>
           </div>
           <MdClose
             onClick={closeModal}
-            className="text-white text-2xl cursor-pointer absolute top-4 right-4"
+            className="text-white text-2xl md:text-xl font-bold cursor-pointer absolute top-[15px] right-4"
           />
         </div>
 
@@ -89,11 +122,19 @@ const DonateModal = ({ isOpen, closeModal, title }) => {
               name="designation"
               isSelect
               options={["Meal for the Christmas"]}
+              value={formData.designation}
+              onChange={handleChange}
             />
           </div>
 
           <div className="mb-4 text-primary">
-            <FloatingInput label="Amount" name="amount" type="number" />
+            <FloatingInput
+              label="Amount"
+              name="amount"
+              type="number"
+              value={formData.amount}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="mb-4 text-primary">
@@ -102,15 +143,29 @@ const DonateModal = ({ isOpen, closeModal, title }) => {
               name="frequency"
               isSelect
               options={["One-Time", "Monthly"]}
+              value={formData.frequency}
+              onChange={handleChange}
             />
           </div>
 
           <div className="mb-4 text-primary">
-            <FloatingInput label="Remarks" name="remarks" isTextArea />
+            <FloatingInput
+              label="Remarks"
+              name="remarks"
+              isTextArea
+              value={formData.remarks}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="mb-4 text-primary">
-            <FloatingInput label="Email" name="email" type="email" />
+            <FloatingInput
+              label="Email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="flex justify-center mt-4">
@@ -135,6 +190,18 @@ const DonateModal = ({ isOpen, closeModal, title }) => {
             />
           </div>
         </div>
+
+        {title === "Children Sponsorship" && (
+          <div className="mt-4 text-center">
+            <Link
+              to="/sponsor-section"
+              className="text-primary hover:underline"
+              onClick={closeModal}
+            >
+              Go to Sponsor Section
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

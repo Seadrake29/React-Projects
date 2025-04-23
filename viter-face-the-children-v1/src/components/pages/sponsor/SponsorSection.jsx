@@ -29,13 +29,13 @@ export default function SponsorSection() {
             alt={child.name}
             className="w-full h-full object-cover"
           />
-          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
+          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-20 text-white p-3">
             <h3 className="text-lg ">{child.name}</h3>
             <div className="flex justify-between items-center mt-2">
               <p className="text-sm text-textyellow mb-0">View Info</p>
               <button
                 onClick={openModal}
-                className="flex items-center gap-1 bg-primary text-white px-3 py-1 rounded text-sm"
+                className="flex items-center gap-1 bg-primary text-white px-4 py-2 rounded text-xs"
               >
                 <span>Sponsor</span> <FaArrowRight />
               </button>
@@ -58,9 +58,9 @@ export default function SponsorSection() {
   };
 
   return (
-    <section className="py-12 mt-[150px]">
-      <div className="max-w-7xl mx-auto px-4 flex flex-col items-center gap-12 justify-center">
-        <div className="flex justify-center gap-8 mb-6 text-xl font-semibold">
+    <section className="py-12 mt-[150px] pb-[233.5px]">
+      <div className="xl:max-w-7xl md:max-w-[850px] mx-auto px-4 flex flex-col items-center gap-12 justify-center">
+        <div className="flex justify-center gap-8 mb-6 md:mb-1 text-xl md:text-base font-semibold">
           <button
             onClick={() => setActiveTab("resident")}
             className={`flex items-center gap-2 ${
@@ -86,22 +86,24 @@ export default function SponsorSection() {
         {activeTab === "resident" ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
-              {currentData.slice(0, -1).map((child) => (
-                <Card key={child.id} child={child} />
-              ))}
-            </div>
+              {currentData.map((child, index, arr) => {
+                const isLast = index === arr.length - 1;
+                const isUnevenInLg = arr.length % 4 === 1;
 
-            {currentData.length % 4 === 1 ? (
-              <div className="flex justify-center w-full -mt-8">
-                <div className="w-[300px]">
-                  <Card child={currentData[currentData.length - 1]} />
-                </div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full mt-6">
-                <Card child={currentData[currentData.length - 1]} />
-              </div>
-            )}
+                if (isLast && isUnevenInLg) {
+                  return (
+                    <div
+                      key={child.id}
+                      className="lg:col-span-4 flex justify-start sm:justify-start md:justify-start lg:justify-center"
+                    >
+                      <Card child={child} />
+                    </div>
+                  );
+                }
+
+                return <Card key={child.id} child={child} />;
+              })}
+            </div>
           </>
         ) : (
           <>
@@ -125,7 +127,7 @@ export default function SponsorSection() {
       <SponsorModal
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
-        selectedChild={selectedChild} // Pass the selected child data to the modal
+        selectedChild={selectedChild}
       />
     </section>
   );

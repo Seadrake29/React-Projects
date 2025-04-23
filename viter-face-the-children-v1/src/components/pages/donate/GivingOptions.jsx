@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import givingOptions from "./DonateData";
 import { MdArrowForward } from "react-icons/md";
 import DonateModal from "../../partials/modal/DonateModal";
+import { useNavigate } from "react-router-dom"; 
 
 const GivingOptions = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState("");
+  const navigate = useNavigate(); 
 
   const openModal = (title) => {
-    setSelectedTitle(title);
-    setIsModalOpen(true);
+    if (title === "Children Sponsorship") {
+      navigate("/sponsor"); 
+    } else {
+      setSelectedTitle(title);
+      setIsModalOpen(true);
+    }
   };
 
   const closeModal = () => {
@@ -23,16 +29,14 @@ const GivingOptions = () => {
           {givingOptions.map((option, index) => (
             <div
               key={index}
-              className="bg-white shadow overflow-hidden flex flex-col w-[268px] min-h-[480px]" // changed w-80 to w-72, height also adjusted
+              className="bg-white shadow overflow-hidden flex flex-col w-[268px] min-h-[480px]"
             >
               <img
                 src={option.image}
                 alt={option.title}
-                className="w-full h-90 object-cover" // reduced height for proportion
+                className="w-full h-90 object-cover"
               />
               <div className="p-5 flex flex-col flex-1">
-                {" "}
-                {/* slightly less padding */}
                 <h3 className="text-base mb-3 text-[#3a3b36] font-semibold">
                   {option.title}
                 </h3>

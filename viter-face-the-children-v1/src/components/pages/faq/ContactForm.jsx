@@ -22,7 +22,6 @@ const ContactForm = () => {
   return (
     <section className="py-16 bg-gray-100 mt-20">
       <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-12 justify-center">
-        {/* Left Section */}
         <div className="w-full lg:w-1/2 flex justify-center sm:justify-start">
           <div>
             <p className="text-textyellow uppercase text-xs font-semibold mb-1">
@@ -38,7 +37,6 @@ const ContactForm = () => {
           </div>
         </div>
 
-        {/* Right Section (Form) */}
         <div className="w-full lg:w-1/2">
           <form className="flex flex-col gap-4 text-sm">
             <FloatingInput label="Name" name="name" />
@@ -46,7 +44,6 @@ const ContactForm = () => {
             <FloatingInput label="Phone" name="phone" type="tel" />
             <FloatingInput label="Subject" name="subject" />
 
-            {/* Message textarea */}
             <div className="relative w-full">
               <textarea
                 id="message"
@@ -61,6 +58,27 @@ const ContactForm = () => {
               >
                 Message
               </label>
+            </div>
+
+            <div className="border border-gray-300 px-6 py-2 rounded bg-white flex flex-col space-y-0.5 w-96 mt-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <input type="checkbox" id="robot" className="w-4 h-4" />
+                  <label htmlFor="robot" className="text-sm text-gray-700">
+                    I'm not a robot
+                  </label>
+                </div>
+                <div className="flex flex-col items-center ml-4">
+                  <img
+                    src="https://www.gstatic.com/recaptcha/api2/logo_48.png"
+                    alt="reCAPTCHA"
+                    className="w-8 h-8"
+                  />
+                  <div className="text-[10px] text-gray-400 mt-0.5">
+                    reCAPTCHA
+                  </div>
+                </div>
+              </div>
             </div>
 
             <button

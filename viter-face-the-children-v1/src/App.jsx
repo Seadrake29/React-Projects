@@ -8,6 +8,9 @@ import Donate from "./components/pages/donate/Donate";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import PageNotFound from "./components/partials/PageNotFound";
 import ChildDetails from "./components/pages/sponsor/ChildDetails";
+import GeneralDonation from "./components/pages/donate/GeneralDonation";
+import FeedingProgram from "./components/pages/donate/FeedingProgram";
+import ChildrenSponsor from "./components/pages/donate/ChildrenSponsor";
 
 function App() {
   return (
@@ -22,6 +25,12 @@ function App() {
         <Route path="/sponsor" element={<Sponsor />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/sponsor/:id" element={<ChildDetails />} />
+        <Route
+          path="/donate/children-sponsorship"
+          element={<ChildrenSponsor />}
+        />
+        <Route path="/donate/feeding-program" element={<FeedingProgram />} />
+        <Route path="/donate/general-donation" element={<GeneralDonation />} />
       </Routes>
     </Router>
   );

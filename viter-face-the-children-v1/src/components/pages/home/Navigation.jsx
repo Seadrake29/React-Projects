@@ -20,7 +20,7 @@ const Navigation = () => {
     <nav className="bg-navcolor border-b border-gray-200 shadow-sm fixed top-0 left-0 right-0 z-50 mt-7">
       <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between gap-10">
         <img
-          src="./src/assets/ftc_svg_logo.svg"
+          src="/src/assets/ftc_svg_logo.svg"
           alt="Logo"
           className="w-174 h-30"
         />

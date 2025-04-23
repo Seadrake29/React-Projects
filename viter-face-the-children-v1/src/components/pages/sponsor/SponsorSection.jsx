@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { residentData, nonResidentData } from "./SponsorData";
-import { FaHouse, FaPeopleGroup, FaArrowRight } from "react-icons/fa6";
+import { FaHouse, FaArrowRight } from "react-icons/fa6";
 import SponsorModal from "../../partials/modal/SponsorModal";
 import { MdOutlineFamilyRestroom } from "react-icons/md";
+import { Link } from "react-router-dom"; // Make sure this is imported
 
 export default function SponsorSection() {
   const [activeTab, setActiveTab] = useState("resident");
@@ -11,9 +12,14 @@ export default function SponsorSection() {
 
   const currentData = activeTab === "resident" ? residentData : nonResidentData;
 
-  const parsePercentage = (str) => parseFloat(str.replace("%", ""));
+  const parsePercentage = (str) => {
+    const num = parseFloat(str?.replace("%", ""));
+    return isNaN(num) ? 0 : num;
+  };
 
   const Card = ({ child }) => {
+    if (!child || !child.name || !child.img || !child.sponsored) return null;
+
     const percentage = parsePercentage(child.sponsored);
 
     const openModal = () => {
@@ -30,9 +36,14 @@ export default function SponsorSection() {
             className="w-full h-full object-cover"
           />
           <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-20 text-white p-3">
-            <h3 className="text-lg ">{child.name}</h3>
+            <h3 className="text-lg">{child.name}</h3>
             <div className="flex justify-between items-center mt-2">
-              <p className="text-sm text-textyellow mb-0">View Info</p>
+              <Link
+                to={`/sponsor/${child.id}`}
+                className="text-sm text-textyellow underline"
+              >
+                View Info
+              </Link>
               <button
                 onClick={openModal}
                 className="flex items-center gap-1 bg-primary text-white px-4 py-2 rounded text-xs"
@@ -42,7 +53,6 @@ export default function SponsorSection() {
             </div>
           </div>
         </div>
-
         <div
           className="h-8 w-full relative overflow-hidden"
           style={{
@@ -83,45 +93,43 @@ export default function SponsorSection() {
           </button>
         </div>
 
-        {activeTab === "resident" ? (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
-              {currentData.map((child, index, arr) => {
-                const isLast = index === arr.length - 1;
-                const isUnevenInLg = arr.length % 4 === 1;
+        {/* Card Grid */}
+        <div className="w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {activeTab === "resident"
+              ? currentData.map((child, index, arr) => {
+                  const isLast = index === arr.length - 1;
+                  const isUnevenInLg = arr.length % 4 === 1;
 
-                if (isLast && isUnevenInLg) {
-                  return (
-                    <div
-                      key={child.id}
-                      className="lg:col-span-4 flex justify-start sm:justify-start md:justify-start lg:justify-center"
-                    >
-                      <Card child={child} />
-                    </div>
-                  );
-                }
+                  if (isLast && isUnevenInLg) {
+                    return (
+                      <div
+                        key={child.id}
+                        className="lg:col-span-4 flex justify-center"
+                      >
+                        <Card child={child} />
+                      </div>
+                    );
+                  }
 
-                return <Card key={child.id} child={child} />;
-              })}
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
-              {currentData.slice(0, 8).map((child) => (
-                <Card key={child.id} child={child} />
-              ))}
-            </div>
+                  return <Card key={child.id} child={child} />;
+                })
+              : currentData
+                  .slice(0, 8)
+                  .map((child) => <Card key={child.id} child={child} />)}
+          </div>
 
-            <div className="flex justify-center gap-6 w-full -mt-8">
+          {/* Non-resident extra row (centered 3 cards) */}
+          {activeTab === "nonResident" && currentData.length > 8 && (
+            <div className="flex justify-center gap-6 mt-6">
               {currentData.slice(8, 11).map((child) => (
-                <div className="w-full max-w-[260px]">
-                  <Card key={child.id} child={child} />
+                <div key={child.id} className="w-full max-w-[260px]">
+                  <Card child={child} />
                 </div>
               ))}
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
 
       <SponsorModal

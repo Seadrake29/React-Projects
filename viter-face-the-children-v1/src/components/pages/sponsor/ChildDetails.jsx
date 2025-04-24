@@ -16,10 +16,12 @@ export default function ChildDetails() {
 
   if (!child) {
     return (
-      <div>
+      <div className="min-h-screen flex flex-col">
         <Header />
         <Navigation />
-        <div className="text-center mt-24 mb-20">Child not found</div>
+        <div className="flex-grow flex items-center justify-center text-center mt-24">
+          Child not found
+        </div>
         <Gifts />
         <Footer />
       </div>
@@ -32,11 +34,11 @@ export default function ChildDetails() {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Header />
       <Navigation />
 
-      <section className="py-8 mt-20 md:py-12 md:mt-24 pb-[180px] md:pb-[200px] xl:pb-[233.5px]">
+      <section className="flex-grow py-8 mt-20 md:py-12 md:mt-24 pb-[180px] md:pb-[200px] xl:pb-[233.5px]">
         <div className="max-w-full md:max-w-[850px] xl:max-w-7xl mx-auto px-4 flex flex-col items-center gap-8 md:gap-12 justify-center">
           <div className="w-full flex justify-center">
             <div className="bg-white rounded flex flex-col md:flex-row w-full max-w-md md:max-w-2xl xl:max-w-4xl">

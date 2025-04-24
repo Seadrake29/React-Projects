@@ -22,7 +22,7 @@ const GeneralDonation = () => {
       <Navigation />
       <main className="flex-grow">
         <div className="max-w-5xl mx-auto mt-[100px] px-4 py-12 mb-[100px] flex flex-col md:flex-row gap-8">
-          <div className="w-full md:w-[275px]">
+          <div className="w-[265px] h-[360px] md:w-[275px] mx-auto md:mx-0">
             <img
               src={generalDonation.image}
               alt={generalDonation.title}

@@ -47,8 +47,8 @@ const Navigation = () => {
                 className={`${
                   currentPath === "/donate"
                     ? "bg-textyellow  border "
-                    : "bg-primary"
-                } text-white text-xs px-3 py-2 rounded-md hover:bg-hover transition`}
+                    : "bg-primary hover:bg-hover"
+                } text-white text-xs px-3 py-2 rounded-md  transition`}
               >
                 Donate
               </button>

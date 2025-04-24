@@ -22,7 +22,7 @@ const FeedingProgram = () => {
       <Navigation />
       <main className="flex-grow">
         <div className="max-w-5xl mx-auto mt-[100px] px-4 py-12 mb-[100px] flex flex-col md:flex-row gap-8">
-          <div className="w-full md:w-[275px]">
+          <div className="w-[265px] h-[360px] md:w-[275px] mx-auto md:mx-0">
             <img
               src={feedingProgram.image}
               alt={feedingProgram.title}
@@ -34,7 +34,7 @@ const FeedingProgram = () => {
               {feedingProgram.title}
             </h1>
             <div className="h-[1px] w-full bg-gray-400 opacity-15 mb-4"></div>
-            <p className="text-sm leading-relaxed mb-6 line-clamp-4">
+            <p className="text-sm leading-relaxed mb-6 xl:line-clamp-4">
               {feedingProgram.description}
             </p>
             <button

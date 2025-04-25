@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Login() {
@@ -10,11 +9,11 @@ export default function Login() {
   const [focusedField, setFocusedField] = useState(null);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({ email: false, password: false });
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
-
     if (!email.trim()) newErrors.email = "Required";
     if (!password.trim()) newErrors.password = "Required";
 
@@ -35,7 +34,15 @@ export default function Login() {
     setFocusedField(field);
   };
 
+  const handleChange = (field, value) => {
+    setHasInteracted(true);
+    if (field === "email") setEmail(value);
+    if (field === "password") setPassword(value);
+  };
+
+  const isFormInteracted = hasInteracted;
   const isFormValid = email.trim() && password.trim();
+
   return (
     <section className=" bg-white min-h-screen flex justify-center items-center px-6">
       <div
@@ -73,7 +80,7 @@ export default function Login() {
                 id="email"
                 name="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => handleChange("email", e.target.value)}
                 onBlur={() => handleBlur("email")}
                 onFocus={() => handleFocus("email")}
                 className={`w-full h-[38px] border ${
@@ -103,7 +110,7 @@ export default function Login() {
                 id="password"
                 name="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => handleChange("password", e.target.value)}
                 onBlur={() => handleBlur("password")}
                 onFocus={() => handleFocus("password")}
                 className={`w-full h-[38px] border ${
@@ -136,9 +143,9 @@ export default function Login() {
 
             <button
               type="submit"
-              disabled={!isFormValid}
+              disabled={hasInteracted && !email.trim() && !password.trim()}
               className={`w-full h-[32px] text-white text-[11.5px] font-medium py-2 mt-2 px-4 rounded-md transition ${
-                isFormValid
+                hasInteracted && (email.trim() || password.trim())
                   ? "bg-primary hover:opacity-90"
                   : "bg-blue-500 opacity-50 cursor-not-allowed"
               }`}

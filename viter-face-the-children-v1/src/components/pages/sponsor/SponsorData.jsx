@@ -1,5 +1,3 @@
-// SponsorData.jsx
-
 const residentData = [
   {
     id: 1,

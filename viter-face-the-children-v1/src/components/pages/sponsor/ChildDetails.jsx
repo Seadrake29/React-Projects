@@ -1,103 +1,98 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { residentData, nonResidentData } from "./SponsorData";
-import SponsorModal from "../../partials/modal/SponsorModal";
-
 import Header from "../home/Header";
-import Navigation from "../home/Navigation";
 import Gifts from "../about/Gifts";
 import Footer from "../home/Footer";
+import Navigation from "../home/Navigation";
+import { nonResidentData, residentData } from "./SponsorData";
+import SponsorModal from "../../partials/modal/SponsorModal";
 
-export default function ChildDetails() {
+const ChildDetails = () => {
   const { id } = useParams();
-  const allChildren = [...residentData, ...nonResidentData];
-  const child = allChildren.find((c) => c.id === Number(id));
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const allChildren = [...residentData, ...nonResidentData];
+  const child = allChildren.find((c) => c.id.toString() === id);
 
   if (!child) {
     return (
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <Navigation />
-        <div className="flex-grow flex items-center justify-center text-center mt-24">
-          Child not found
-        </div>
-        <Gifts />
-        <Footer />
+      <div className="text-center py-12 text-xl text-red-600">
+        Child not found.
       </div>
     );
   }
 
-  const percentage = parseFloat(child.sponsored.replace("%", ""));
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <Header />
       <Navigation />
 
-      <section className="flex-grow py-8 mt-20 md:py-12 md:mt-24 pb-[180px] md:pb-[200px] xl:pb-[233.5px]">
-        <div className="max-w-full md:max-w-[850px] xl:max-w-7xl mx-auto px-4 flex flex-col items-center gap-8 md:gap-12 justify-center">
-          <div className="w-full flex justify-center">
-            <div className="bg-white rounded flex flex-col md:flex-row w-full max-w-md md:max-w-2xl xl:max-w-4xl">
-              <div className="relative self-center md:self-stretch w-[250px] h-[380px]">
+      <main className="flex-grow">
+        <div className="max-w-5xl xl:mx-auto xl:justify-center xl:flex xl:gap-12 mx-4 mt-[100px] py-12 mb-[100px] flex flex-col md:flex-row gap-8">
+          <div className="w-full md:w-[275px] flex-shrink-0">
+            <div className="w-[70%] mx-auto md:w-full">
+              <div className="aspect-[3/4] overflow-hidden">
                 <img
                   src={child.img}
                   alt={child.name}
-                  className="w-full h-full object-cover rounded-t-md md:rounded-tr-none md:rounded-l-md"
+                  className="w-full h-full object-cover"
                 />
-                <div
-                  className="absolute bottom-0 left-0 h-8 w-full text-white text-sm font-semibold flex items-center justify-start pl-4"
-                  style={{
-                    background: `linear-gradient(to right, #eb8500 ${percentage}%, #ffbd66 ${percentage}%)`,
-                  }}
-                >
-                  {child.sponsored} – Sponsored
-                </div>
               </div>
-
-              <div className="p-4 md:p-6 flex-1 text-left">
-                <h2 className="text-lg md:text-xl font-semibold mb-2 text-textblack">
-                  {child.name}
-                </h2>
-                <hr className="py-2 opacity-30" />
-                <p className="text-sm md:text-base">
-                  <span className="font-medium">Age:</span> {child.age ?? "N/A"}
-                </p>
-                <p className="text-sm md:text-base">
-                  <span className="font-medium">Birthday:</span>{" "}
-                  {child.birthday ?? "N/A"}
-                </p>
-
-                <h4 className="mt-4 font-semibold text-gray-700 text-sm md:text-base">
-                  My Story
-                </h4>
-                <p className="text-sm text-gray-700 mt-1">
-                  {child.story ?? "N/A"}
-                </p>
-
-                <button
-                  onClick={openModal}
-                  className="bg-primary text-white text-xs md:text-sm px-6 py-2 rounded-md hover:bg-opacity-90 transition mt-4"
-                >
-                  Sponsor Now
-                </button>
+              <div
+                className="text-white font-semibold text-sm md:text-[16px] px-3 py-1 md:px-4 md:py-2 text-center"
+                style={{
+                  background: `linear-gradient(to right, #eb8500 ${child.sponsored}, #ffbd66 ${child.sponsored})`,
+                }}
+              >
+                {child.sponsored} - Sponsored
               </div>
             </div>
           </div>
 
-          <SponsorModal
-            isOpen={isModalOpen}
-            closeModal={closeModal}
-            selectedChild={child}
-          />
+          <div className="flex-1 mt-10 text-[#3a3b36] md:-ml-3 xl:mt-0">
+            <h1 className="text-lg font-semibold mb-5">{child.name}</h1>
+            <div className="h-[1px] w-full bg-gray-400 opacity-15 mb-4"></div>
+            {child.age && (
+              <p className="mb-1 text-sm">
+                <span>Age:</span> {child.age}
+              </p>
+            )}
+            {child.birthday && (
+              <p className="mb-4 text-sm">
+                <span>Birthday:</span> {child.birthday}
+              </p>
+            )}
+            {child.story && (
+              <div>
+                <h2 className="text-md font-semibold mb-2">My Story</h2>
+                <p className="text-text-[#3a3b36] whitespace-pre-line text-sm w-full text-justify">
+                  {child.story}
+                </p>
+              </div>
+            )}
+            <button
+              onClick={openModal}
+              className="mt-6 bg-primary text-white py-2 px-4 text-xs rounded-md hover:bg-blue-400"
+            >
+              Sponsor Now
+            </button>
+          </div>
         </div>
-      </section>
+      </main>
 
       <Gifts />
       <Footer />
+
+      <SponsorModal
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        selectedChild={child}
+      />
     </div>
   );
-}
+};
+
+export default ChildDetails;

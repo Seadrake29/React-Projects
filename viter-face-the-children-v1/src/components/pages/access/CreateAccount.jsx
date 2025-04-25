@@ -58,11 +58,10 @@ export default function CreateAccount() {
     }
   };
 
-  const isButtonDisabled = Object.values(formData).some((value, key) =>
+  const isButtonDisabled = Object.entries(formData).some(([key, value]) =>
     key === "country" ? !value : value.trim() === ""
   );
 
-  // Remove chevron and separator from react-select
   const customComponents = {
     DropdownIndicator: () => null,
     IndicatorSeparator: () => null,
@@ -78,7 +77,7 @@ export default function CreateAccount() {
             className="w-[300px] h-[89px] mb-6"
           />
 
-          <div className="w-full max-w-[400px] mb-2 self-start mt-2">
+          <div className="w-full max-w-[400px] mb-2 mt-2">
             <h2 className="text-lg font-semibold text-textblack mb-4">
               Create a Donor Account
             </h2>
@@ -94,7 +93,6 @@ export default function CreateAccount() {
               { label: "Address", name: "address", type: "textarea" },
               { label: "City", name: "city", type: "text" },
               { label: "State/Province", name: "state", type: "text" },
-              { label: "Zip Code", name: "zip", type: "text" },
             ].map(({ label, name, type }) => (
               <div key={name} className="relative w-full">
                 <label
@@ -159,6 +157,8 @@ export default function CreateAccount() {
                 onBlur={() => handleBlur("country")}
                 placeholder=""
                 menuPlacement="bottom"
+                menuPortalTarget={document.body}
+                menuPosition="fixed"
                 className="pt-4"
                 classNamePrefix="react-select"
                 components={customComponents}
@@ -177,15 +177,44 @@ export default function CreateAccount() {
                     height: "38px",
                     minHeight: "38px",
                   }),
-                  menu: (provided) => ({
-                    ...provided,
-                    zIndex: 20,
+                  menuPortal: (base) => ({
+                    ...base,
+                    zIndex: 9999,
                   }),
                 }}
               />
               {touched.country && errors.country && (
                 <span className="absolute right-2 -bottom-5 text-xs italic text-red-500">
                   {errors.country}
+                </span>
+              )}
+            </div>
+
+            <div className="relative w-full">
+              <label
+                htmlFor="zip"
+                className="absolute left-2 -top-2 bg-white px-1 text-xs text-primary z-10"
+              >
+                Zip Code
+              </label>
+              <input
+                type="text"
+                id="zip"
+                name="zip"
+                value={formData.zip}
+                onChange={handleChange}
+                onBlur={() => handleBlur("zip")}
+                className={`w-full h-[38px] border ${
+                  errors.zip ? "border-red-500" : "border-gray-300"
+                } rounded-lg px-3 pt-4 pb-2 text-sm focus:outline-none focus:ring-1 ${
+                  errors.zip
+                    ? "focus:ring-red-500 focus:border-red-500"
+                    : "focus:ring-primary focus:border-primary"
+                }`}
+              />
+              {touched.zip && errors.zip && (
+                <span className="absolute right-2 -bottom-5 text-xs italic text-red-500">
+                  {errors.zip}
                 </span>
               )}
             </div>

@@ -13,7 +13,7 @@ const Services = () => {
           </h3>
           <p
             className="mb-10 text-sm md:max-w-[70%] leading-relaxed text-gray-700"
-            style={{ lineHeight: "2" }}
+            style={{ lineHeight: "1.8" }}
           >
             Making a difference in the lives of children can be simplified into
             a few essential actions focused on their overall well-being. Here

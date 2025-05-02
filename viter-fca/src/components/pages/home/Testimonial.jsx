@@ -22,7 +22,6 @@ const Testimonial = () => {
 
       <div className="max-w-[1700px] w-full mx-auto">
         <div className="relative w-full max-w-[1400px] mx-auto mb-20 h-full">
-          {/* Animate sliding */}
           <div
             key={currentIndex}
             className={`flex flex-col md:flex-row w-full ml-5 transition-all duration-700 transform ${
@@ -31,7 +30,6 @@ const Testimonial = () => {
                 : "translate-x-0 animate-slide-right"
             }`}
           >
-            {/* LEFT SIDE */}
             <div className="flex flex-col w-full md:max-w-[1100px]">
               <div className="relative mb-8 mt-[100px]">
                 <img
@@ -66,8 +64,7 @@ const Testimonial = () => {
               </div>
             </div>
 
-            {/* RIGHT SIDE */}
-            <div className="relative flex flex-1 justify-center mt-12 md:mt-0 mr-[120px]">
+            <div className="relative hidden md:flex flex-1 justify-center mt-12 md:mt-0 mr-[120px]">
               <div className="flex flex-col gap-4">
                 <img
                   src={testimonials[currentIndex].sideImages[0]}
@@ -89,7 +86,6 @@ const Testimonial = () => {
           </div>
         </div>
 
-        {/* Dots */}
         <div className="flex justify-center gap-4 mt-8">
           {testimonials.map((_, index) => (
             <button

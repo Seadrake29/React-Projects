@@ -9,25 +9,23 @@ export default function Header() {
 
   const navItems = [
     { label: "HOME", path: "/" },
-    { label: "ABOUT" },
-    { label: "ADMISSION" },
+    { label: "ABOUT", path: "/about" },
+    { label: "ADMISSION", path: "/admission" },
     { label: "SERVICES", path: "/services" },
-    { label: "GALLERY" },
-    { label: "CONTACT" },
+    { label: "GALLERY", path: "/gallery" },
+    { label: "CONTACT", path: "/contact" },
     { label: "LITERARIO" },
   ];
 
   return (
-    <header className="w-full bg-white shadow">
-      <div className="mx-auto w-full max-w-[1600px] px-4">
-        {/* Top Row */}
+    <header className="w-full bg-white">
+      <div className="mx-auto w-full max-w-[1600px] px-4 pb-6">
         <div className="flex items-center justify-between gap-4 py-2 md:flex-row">
-          {/* Logo */}
           <div className="flex-shrink-0">
             <img
               src="/images/home/fca-logo.webp"
               alt="FCA Logo"
-              className="h-16 object-contain"
+              className="h-20 object-contain"
             />
           </div>
 
@@ -45,16 +43,18 @@ export default function Header() {
             </div>
 
             <div className="flex items-center gap-2">
-              <button className="rounded-md bg-myblue px-4 py-2 text-xs text-white hover:bg-[#2f4678]">
+              <button className="rounded-md bg-myblue px-6 py-3 text-base text-white hover:bg-blue-500">
                 Facebook
               </button>
-              <button className="rounded-md border border-black px-4 py-2 text-xs text-black hover:bg-gray-100">
-                FAQ's
-              </button>
+              <Link to="/faqs">
+                <button className="rounded-md border border-black px-6 py-3 text-base text-black hover:bg-gray-100">
+                  FAQ's
+                </button>
+              </Link>
             </div>
           </div>
 
-          {/* Burger Button */}
+          {/* Mobile menu toggle */}
           <div className="flex md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -75,10 +75,7 @@ export default function Header() {
           </div>
         </div>
 
-        <hr className="border-t border-gray-300" />
-
-        {/* Desktop Nav */}
-        <nav className="relative items-center justify-between py-3 text-sm font-medium font-raleway text-gray-700 hidden md:flex">
+        <nav className="relative items-center justify-between pt-3 text-lg font-medium font-raleway text-gray-700 hidden md:flex border-t border-gray-300">
           <div className="flex flex-1 items-center justify-center">
             {navItems.map((item, index) => (
               <div
@@ -88,16 +85,17 @@ export default function Header() {
                 {item.path ? (
                   <Link
                     to={item.path}
-                    className={`text-center ${
-                      location.pathname === item.path
-                        ? "text-primary font-bold"
-                        : ""
-                    }`}
+                    className="relative px-4 pt-4 pb-2 text-center"
                   >
+                    {location.pathname === item.path && (
+                      <span className="absolute left-1/2 -top-[14px] h-2 w-[200px] -translate-x-1/2 rounded-full bg-primary z-10" />
+                    )}
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-center">{item.label}</span>
+                  <span className="text-center px-4 pt-4 pb-2">
+                    {item.label}
+                  </span>
                 )}
                 {index < navItems.length - 1 && (
                   <div className="absolute right-0 top-1/2 h-6 w-px -translate-y-1/2 bg-gray-300" />
@@ -107,7 +105,7 @@ export default function Header() {
           </div>
 
           <div className="ml-8 flex-shrink-0">
-            <button className="rounded-md bg-primary px-5 py-2 text-sm font-bold text-white hover:bg-[#c9981e]">
+            <button className="rounded-md bg-primary px-8 py-2 text-sm text-white hover:bg-[#c9981e]">
               GIVE
             </button>
           </div>
@@ -153,12 +151,17 @@ export default function Header() {
             </div>
 
             <div className="flex flex-col items-center gap-2 mt-4 w-full px-8">
-              <button className="w-full rounded-md bg-myblue px-4 py-2 text-xs text-white hover:bg-[#2f4678]">
+              <button className="w-full rounded-md bg-myblue px-4 py-2 text-xs text-white hover:bg-blue-400">
                 Facebook
               </button>
-              <button className="w-full rounded-md border border-black px-4 py-2 text-xs text-black hover:bg-gray-100">
-                FAQ's
-              </button>
+              <Link to="/faqs" className="w-full">
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full rounded-md border border-black px-4 py-2 text-xs text-black hover:bg-gray-100"
+                >
+                  FAQ's
+                </button>
+              </Link>
             </div>
           </div>
         </div>

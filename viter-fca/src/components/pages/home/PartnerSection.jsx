@@ -23,7 +23,7 @@ const PartnersSection = () => {
     <section className="partners py-16">
       <div className="container mx-auto px-4">
         {/* Main logos */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-2 items-center justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center justify-items-center">
           <PartnerLogo
             href="https://frontlinebusiness.com.ph/"
             src="/images/home/logo/logo-fbs.png"
@@ -56,8 +56,8 @@ const PartnersSection = () => {
           />
         </div>
 
-        {/* Last two logos - very close together */}
-        <div className="flex flex-wrap justify-center items-center gap-[250px] mt-6">
+        {/* Secondary logos */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center justify-items-center mt-6">
           <PartnerLogo
             href="https://www.abeka.com/"
             src="https://fca.edu.ph/wp-content/uploads/2023/08/logo.svg"

@@ -1,11 +1,10 @@
 import React from "react";
-import { FaCubes, FaChild, FaBookOpen, FaUserTie } from "react-icons/fa6"; // use react-icons/fa6 or switch to regular fa if needed
+import { FaCubes, FaChild, FaBookOpen, FaUserTie } from "react-icons/fa6";
 import InfoCard from "./InfoCard";
 
 const Banner = () => {
   return (
     <div className="relative min-h-screen text-white">
-      {/* Video background */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover brightness-50"
         loading="lazy"
@@ -22,7 +21,6 @@ const Banner = () => {
         Your browser does not support the video tag.
       </video>
 
-      {/* Overlay with text */}
       <div className="absolute inset-0 bg-black bg-opacity-20 flex flex-col items-center justify-center text-center p-4">
         <h1
           className="text-4xl md:text-5xl xl:text-7xl font-bold leading-tight font-serif"
@@ -40,8 +38,12 @@ const Banner = () => {
         </button>
       </div>
 
-      {/* Cards container */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-full max-w-[1100px] bg-transparent lg:bg-white rounded-2xl gap-2 lg:gap-0 lg:mx-auto grid grid-cols-2 text-center lg:grid-cols-4 lg:justify-center lg:items-center lg:shadow-2xl p-4">
+      <div
+        className="absolute left-1/2 transform -translate-x-1/2 w-full max-w-[1100px]
+        mt-[1000px] lg:mt-0 lg:bottom-0 lg:translate-y-1/2
+        bg-white rounded-2xl p-4 shadow-xl
+        grid grid-cols-2 text-center lg:grid-cols-4 gap-2"
+      >
         <InfoCard
           icon={<FaCubes />}
           title="Playschool"
